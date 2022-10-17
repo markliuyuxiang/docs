@@ -3,6 +3,7 @@ sidebar_position: 3
 ---
 
 import DarkModeNote from '../../recipes/customize-sie/fragments/_dark-mode-note.md';
+import manageLanguage from './assets/manage-language.png';
 import sieOthers from './assets/sie-others.png';
 
 # Customize sign-in experience
@@ -43,12 +44,78 @@ Toggle on "Enable terms of use" and enter the URL to enforce this process. Logto
 
 ### Language
 
-In most cases, it'll be fine to keep the default value unless:
+Logto provides six predefined languages (v1.0.0-beta.11). You can customize values of invidual keys.
 
-- You want Logto to fall back to a different language when no language matches the user's system preference, or;
-- You want Logto to fix a language to display.
+In addition, it provides 113 language tags. You can create an added language , bring your own translation, and apply to your product UI.
+
+:::note
+
+Currently we only support language customization for Sign in UI. This langauge settings doesn’t apply to the admin console language setting.
+
+:::
+
+#### Terminology
+
+| Terminology                                                                                 | Notes                                                                                                                                    |
+| ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Default language                                                                            | When auto-detect is on, the default language will be used when the detected user language isn’t covered in the current language library. |
+| When auto-detect is off, the default language is the only language your software will show. |
+| Logto source values                                                                         | It refers to the values which Logto provided and haven’t been customized by users.                                                       |
+| Custom values                                                                               | It refers to the values which AC users can change for individual keys.                                                                   |
+| Keys                                                                                        | It refers to the identifier of each locale value.                                                                                        |
+| Language tag                                                                                | eg. en-US                                                                                                                                |
+| Language code                                                                               | eg. en                                                                                                                                   |
+| Country code                                                                                | eg. US                                                                                                                                   |
+| Language name                                                                               | 简体中文                                                                                                                                 |
+| Added language                                                                              | The language added and customized by users.                                                                                              |
+| Logto provided language                                                                     | Logto official languages and stored in Logto original code base.                                                                         |
+
+#### Set your language mode
 
 <img alt="Sign-in experience - Others" src={sieOthers} style={{ maxWidth: 560 }} />
+
+If you want to configure your languages, go to **Sign in Experience** > **Others** > **Language**.
+
+There are two items: **Enable auto-detect** and select a **Default language**.  
+By default the auto-detect mode is on, which means your app detects the user's locale settings and auto switch to the available languages in Logto.  
+The default language in this case is a fallback language if detected language is not supported in Logto.
+
+However, Logto can make it possible by bringing your own translation.  
+Click **Manage language**, select the language tag, add your own translation and save.  
+You will see it is added in the left nav meantime shown in the default language dropdown.
+
+#### Manage your languge
+
+<img alt="Manage language" src={manageLanguage} style={{ maxWidth: 560 }} />
+
+Clicking the manage language button will open a modal.
+
+On the left side they are the languages Logto provided and you can see a tag Logto provided next to the language tag.  
+You can't delete those pre-defined languages but can customize values of each individual key.  
+Your custom values will overwrite Logto source values when it loads in front of the end users.
+
+#### Let's take an example
+
+Here is an example, let's say you have a website, whose default language is English and auto detect is on.
+A user whose locale setting is Japan and gets a chance to visit your website and sign up an account.
+Unfortunately, Logto doesn't support Japanese for now, then the user will see the sign in UI in English by default.
+
+However, we make this possile in Admin Console.
+
+Select Japanese language tag ja-JP, add your own translation and save. Your end customer whose locale setting is Japan will be able to see Japnese, which you just translated, on your website.
+
+If you turn of the auto-detect, the default language is the only language your app or website will show. We do not recommend this mode in general since it will limit you target audiences.
+
+#### FAQ
+
+> What if the language I added becomes Logto provided language?
+
+Then the language you addded on the left side will have a `Logto provided` tag next to the language tag and the language can't be deleted. The custom values you added still work and overwrite Logto source values. You can clear the custom values to end up using Logto source values instead.
+
+> What if I add custom values partially?
+
+The two columns will merge and as a whole this is what the end users will see.  
+Let's take English as an example, you don't like only a few copies Logto provided and you just want to customize a few, not all of them. Find the keys and customize the values accordingly, and your sign in UI versus Logto provided UI will be only different in the keys you edited. The rest of the content stay original and the same.
 
 ## What's next
 
